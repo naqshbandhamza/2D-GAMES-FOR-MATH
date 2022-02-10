@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const id = urlParams.get("id");
+      const server = urlParams.get("server");
+      const userId = urlParams.get("userId");
+      const token = urlParams.get("token");
+
+      const score = 100;
+
+      function sendResult() {
+        console.log("sendResult");
+        var formData = new FormData();
+        formData.append("paperId", id);
+        formData.append("score", score);
+        formData.append("userId", userId);
+        formData.append("token", token);
+
+        var xhr = new XMLHttpRequest();
+        // xhr.withCredentials=true
+        xhr.open("POST", server + "/api/submitGameResult");
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+          // If the request completed, close the extension popup
+          if (this.readyState == 4)
+            if (this.status == 200) {
+              const response = JSON.parse(this.response);
+              console.log(response);
+
+              if (response.success) {
+                // result submission succefully
+                console.log("success");
+              } else {
+                console.log("fail");
+              }
+            }
+        };
+      }
+
+      var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.responseType = "json";
+        xhr.onload = function () {
+          var status = xhr.status;
+          if (status === 200) {
+            callback(null, xhr.response);
+          } else {
+            callback(status, xhr.response);
+          }
+        };
+        xhr.send();
+      };
+
+      getJSON(server + "/game/" + id + "/1.json", function (err, data) {
+        if (err !== null) {
+          console.log(err);
+        } else {
+          console.log(data);
+        }
+      });
+    </script>
+  </head>
+  <body>
+    this is game
+    <button type="button" onclick="sendResult()">Submit Result</button>
+  </body>
+</html>

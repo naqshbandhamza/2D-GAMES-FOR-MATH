@@ -359,7 +359,7 @@ const InternalConfig = function (initConfig) { // eslint-disable-line no-unused-
 		 * @type {?function(...*)}
 		 */
 		onPrintError: function (var_args) {
-			console.error.apply(console, Array.from(arguments)); // eslint-disable-line no-console
+			//console.error.apply(console, Array.from(arguments)); // eslint-disable-line no-console
 		},
 	};
 

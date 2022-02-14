@@ -59,11 +59,11 @@
           />-->
           <iframe
             style="
-              height: 85%;
-              width: 80%;
-              margin-top: 50px;
-              margin-left: 10%;
-              margin-right: 10%;
+              height: 100%;
+              width: 90%;
+
+              margin-left: 5%;
+              margin-right: 5%;
               overflow: hidden;
             "
             :src="
@@ -72,7 +72,8 @@
               '&id=46&userId=' +
               this.token.userId +
               '&token=' +
-              this.gameToken
+              this.gameToken +
+              '&lang=zh'
             "
           ></iframe>
         </template>

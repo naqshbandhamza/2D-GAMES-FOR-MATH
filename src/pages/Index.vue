@@ -76,7 +76,7 @@
             "
           ></iframe>
         </template>
-        <div style="position: absolute; top: 5px; right: 5px">
+        <div style="position: absolute; top: 5px; right: 5px;  background-color: gray;">
           <q-btn dense outline icon="close" @click="gameModel = false" />
         </div>
       </div>

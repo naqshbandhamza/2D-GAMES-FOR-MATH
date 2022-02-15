@@ -60,10 +60,9 @@
           <iframe
             style="
               height: 100%;
-              width: 90%;
+              width: 100%;
 
-              margin-left: 5%;
-              margin-right: 5%;
+              
               overflow: hidden;
             "
             :src="

@@ -148,7 +148,7 @@ export default defineComponent({
         )
         .then((response) => {
           if (process.env.DEV) {
-            console.log(response);
+            //console.log(response);
           }
           if (response.data.success) {
             this.token = response.data.token;
@@ -215,7 +215,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    console.log("mounted");
+    //console.log("mounted");
   },
 });
 </script>

@@ -192,7 +192,7 @@ export default defineComponent({
         )
         .then((response) => {
           if (process.env.DEV) {
-            console.log(response);
+            //console.log(response);
           }
           if (response.data.success) {
             this.gameToken = response.data.token;

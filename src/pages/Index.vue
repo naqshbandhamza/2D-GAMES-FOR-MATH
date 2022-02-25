@@ -1,7 +1,8 @@
 <template>
   <q-page class="flex flex-center">
     <template v-if="token">
-      <q-btn label="Open Game" @click="openGame" />
+      <q-btn label="Snake" @click="openGame" />
+      <q-btn label="Ninja Jezzball" @click="openGame" />
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>

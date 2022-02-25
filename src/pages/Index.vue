@@ -1,8 +1,8 @@
 <template>
   <q-page class="flex flex-center">
     <template v-if="token">
-      <q-btn label="Snake" @click="openGame" />
-      <q-btn label="Ninja Jezzball" @click="openGame" />
+      <q-btn label="Snake" @click="openGame('snake')" />
+      <q-btn label="Ninja Jezzball" @click="openGame('jezzball')" />
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>
@@ -63,17 +63,17 @@
               height: 100%;
               width: 100%;
 
-              
+
               overflow: hidden;
             "
             :src="
-              '/game/godot-snake-html/index.html?server=' +
+              this.game_path+'?server=' +
               this.server +
               '&id=46&userId=' +
               this.token.userId +
               '&token=' +
               this.gameToken +
-              '&lang=zh'
+              '&lang=en'
             "
           ></iframe>
         </template>
@@ -120,6 +120,7 @@ export default defineComponent({
       selectedSchool: 1,
       username: null,
       password: null,
+      game_path:""
     };
   },
   computed: {
@@ -180,8 +181,13 @@ export default defineComponent({
       this.username = null;
       this.password = null;
     },
-    openGame() {
+    openGame(game_n) {
+      if (game_n=='snake')
+          this.game_path = '/game/godot-snake-html/index.html';
+      else if(game_n=='jezzball')
+          this.game_path = '/game/godot-jezzball-html/index.html';
       this.setGameToken();
+
     },
     setGameToken() {
       this.$q.loading.show();

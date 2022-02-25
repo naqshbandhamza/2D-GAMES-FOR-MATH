@@ -66,7 +66,7 @@
               overflow: hidden;
             "
             :src="
-              '/game/godot-game-html/index.html?server=' +
+              '/game/godot-snake-html/index.html?server=' +
               this.server +
               '&id=46&userId=' +
               this.token.userId +

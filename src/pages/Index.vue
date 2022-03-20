@@ -3,6 +3,7 @@
     <template v-if="token">
       <q-btn label="Snake" @click="openGame('snake')" />
       <q-btn label="Ninja Jezzball" @click="openGame('jezzball')" />
+      <q-btn label="Zombie" @click="openGame('zombie')" />
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>
@@ -186,6 +187,8 @@ export default defineComponent({
           this.game_path = '/game/godot-snake-html/index.html';
       else if(game_n=='jezzball')
           this.game_path = '/game/godot-jezzball-html/index.html';
+      else if(game_n=='zombie')
+          this.game_path = '/game/godot-zombie-html/index.html';
       this.setGameToken();
 
     },

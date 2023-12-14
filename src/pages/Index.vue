@@ -7,8 +7,10 @@
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>
-       <p>user:user1</p>
+      <div>
+        <p>user:user1</p>
         <p>password:password</p>
+      </div>
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
         <q-input
           filled

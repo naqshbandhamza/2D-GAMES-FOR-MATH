@@ -7,17 +7,13 @@
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>
-      <div>
-        <p>user:user1</p>
-        <p>password:password</p>
-      </div>
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
         <q-input
           filled
           v-model="username"
           label="Username"
           lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please enter username']"
+          :rules="[(val) => (val && val.length > 0) || 'Please enter username:user1']"
           autocorrect="off"
           autocapitalize="none"
         />
@@ -29,7 +25,7 @@
           type="password"
           autocomplete="off"
           :rules="[
-            (val) => (val && val.length > 0) || 'Please enter passsword',
+            (val) => (val && val.length > 0) || 'Please enter passsword:password',
           ]"
         />
         <div>

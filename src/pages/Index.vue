@@ -17,7 +17,8 @@
           autocorrect="off"
           autocapitalize="none"
         />
-
+        <p>user:user1</p>
+        <p>password:password</p>
         <q-input
           filled
           v-model="password"

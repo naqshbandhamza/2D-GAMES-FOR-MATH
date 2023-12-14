@@ -7,6 +7,8 @@
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>
+       <p>user:user1</p>
+        <p>password:password</p>
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
         <q-input
           filled
@@ -17,8 +19,6 @@
           autocorrect="off"
           autocapitalize="none"
         />
-        <p>user:user1</p>
-        <p>password:password</p>
         <q-input
           filled
           v-model="password"

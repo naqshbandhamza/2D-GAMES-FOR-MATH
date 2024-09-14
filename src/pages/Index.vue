@@ -2,12 +2,11 @@
   <q-page class="flex flex-center">
     <template v-if="token">
       <q-btn label="Snake" @click="openGame('snake')" />
-      <q-btn label="Ninja Jezzball" @click="openGame('jezzball')" />
       <q-btn label="Zombie" @click="openGame('zombie')" />
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>
-      <div>
+      <div :style="computedStyles">
       <p>user: user1</p>
       <p>pass: password</p>  
       </div>
@@ -139,6 +138,11 @@ export default defineComponent({
       // return process.env.BASE_URL.replaceAll('\\"', '').replaceAll('"', '')
       return "https://demo-backend.learning-canvas.com";
     },
+    computedStyles() {
+      return {
+        marginRight: '10px',
+      };
+    },
     ...mapState({
       token: (state) => state.security.token,
     }),
@@ -237,4 +241,5 @@ export default defineComponent({
     //console.log("mounted");
   },
 });
+
 </script>

@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <template v-if="token">
       <q-btn label="Snake" @click="openGame('snake')" />
-      <q-btn label="Zombie" @click="openGame('zombie')" />
+      <q-btn label="Ninja Jezzball" @click="openGame('jezzball')" />
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>

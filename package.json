@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quasar App",
-  "author": "alfred <alfredclyim@gmail.com>",
+  "author": "Hamza Latif",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "build:pwa": "quasar build -m pwa"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

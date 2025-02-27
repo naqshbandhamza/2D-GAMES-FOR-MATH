@@ -4,7 +4,6 @@
       <q-btn label="Snake" @click="openGame('snake')" />
       <q-btn label="Ninja Jezzball" @click="openGame('jezzball')" />
       <q-btn label="Zombie" @click="openGame('zombie')" />
-      <q-btn label="Ninja Slash" @click="openGame('slash')" />
       <q-btn label="Logout" @click="logout" />
     </template>
     <template v-else>

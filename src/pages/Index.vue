@@ -1,47 +1,10 @@
-<template>
+<!-- <template>
   <q-page class="flex flex-center">
-    <template v-if="token">
+   
       <q-btn label="Snake" @click="openGame('snake')" />
       <q-btn label="Ninja Jezzball" @click="openGame('jezzball')" />
       <q-btn label="Zombie" @click="openGame('zombie')" />
-      <q-btn label="Logout" @click="logout" />
-    </template>
-    <template v-else>
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-        <q-input
-          filled
-          v-model="username"
-          label="Username"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please enter username']"
-          autocorrect="off"
-          autocapitalize="none"
-        />
-
-        <q-input
-          filled
-          v-model="password"
-          label="Password"
-          lazy-rules
-          type="password"
-          autocomplete="off"
-          :rules="[
-            (val) => (val && val.length > 0) || 'Please enter passsword',
-          ]"
-        />
-        <div>
-          <q-btn no-caps label="Submit" type="submit" color="primary" />
-          <q-btn
-            no-caps
-            label="Reset"
-            type="reset"
-            color="primary"
-            flat
-            class="q-ml-sm"
-          />
-        </div>
-      </q-form>
-    </template>
+   
     <q-dialog
       v-model="gameModel"
       :maximized="true"
@@ -54,17 +17,10 @@
         style="width: 100%; height: 100%; position: relative"
       >
         <template v-if="gameToken" style="overflow: hidden">
-          <!-- <iframe
-            style="background: white;"
-            width="100%" height="100%" frameBorder="0"
-            :src="'/game/index.html?server=' + this.server + '&id=46&userId=' + this.token.userId + '&token=' + this.gameToken"
-          />-->
           <iframe
             style="
               height: 100%;
               width: 100%;
-
-
               overflow: hidden;
             "
             :src="
@@ -230,4 +186,129 @@ export default defineComponent({
     //console.log("mounted");
   },
 });
+</script> -->
+
+
+<template>
+  <q-page class="flex flex-center q-pa-lg column">
+
+    <!-- Game Buttons -->
+    <q-btn label="Snake" color="primary" class="q-mb-sm" @click="openGame('snake')" />
+    <q-btn label="Ninja Jezzball" color="primary" class="q-mb-sm" @click="openGame('jezzball')" />
+    <q-btn label="Zombie" color="primary" class="q-mb-sm" @click="openGame('zombie')" />
+
+    <!-- Game Dialog -->
+    <q-dialog
+      v-model="gameModel"
+      maximized
+      transition-show="slide-up"
+      transition-hide="slide-down"
+    >
+      <div class="fit bg-white relative-position">
+
+        <!-- Game Frame -->
+        <iframe
+          v-if="gameToken"
+          class="fit"
+          frameborder="0"
+          :src="`${game_path}?server=${server}&id=46&userId=${token.userId}&token=${gameToken}&lang=en`"
+        ></iframe>
+
+        <!-- Close Button -->
+        <div class="absolute-top-right q-pa-sm">
+          <q-btn dense outline icon="close" color="grey-9" @click="gameModel = false" />
+        </div>
+
+      </div>
+    </q-dialog>
+
+  </q-page>
+</template>
+
+<script>
+import { defineComponent } from "vue";
+import { mapState } from "vuex";
+import { useQuasar } from "quasar";
+
+export default defineComponent({
+  name: "PageIndex",
+  setup() {
+    const $q = useQuasar();
+    return {};
+  },
+  data() {
+    return {
+      gameModel: false,
+      gameToken: "",
+      game_path: ""
+    };
+  },
+  computed: {
+    server() {
+      return "https://demo-backend.learning-canvas.com";
+    },
+    ...mapState({
+      token: (state) => state.security.token,
+    }),
+  },
+  methods: {
+    openGame(name) {
+      switch (name) {
+        case "snake":
+          this.game_path = "/game/godot-snake-html/index.html";
+          break;
+        case "jezzball":
+          this.game_path = "/game/godot-jezzball-html/index.html";
+          break;
+        case "zombie":
+          this.game_path = "/game/godot-zombie-html/index.html";
+          break;
+        case "slash":
+          this.game_path = "/game/godot-slash-html/index.html";
+          break;
+      }
+
+      this.loadGameToken();
+    },
+    loadGameToken() {
+      // Simulate loading
+      this.$q.loading.show();
+
+      // Set a dummy token
+      this.gameToken = "DUMMY-GAME-TOKEN-12345";
+
+      // Open the game dialog
+      this.gameModel = true;
+
+      // Hide loading
+      this.$q.loading.hide();
+    },
+
+    // loadGameToken() {
+    //   this.$q.loading.show();
+    //   this.$api
+    //     .post(
+    //       "/api/getGameToken",
+    //       this.$qs.stringify({ userId: this.token.userId }),
+    //       { headers: { "x-access-token": this.token.id } }
+    //     )
+    //     .then((response) => {
+    //       if (response.data.success) {
+    //         this.gameToken = response.data.token;
+    //         this.gameModel = true;
+    //       }
+    //     })
+    //     .finally(() => {
+    //       this.$q.loading.hide();
+    //     });
+    // },
+  },
+});
 </script>
+
+<style>
+.fit {
+  width: 100%;
+  height: 100%;
+}
+</style>
